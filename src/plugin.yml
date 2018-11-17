@@ -1,0 +1,5 @@
+name: AdvancedBanAutoBan
+description: Developed for CapeCraft.Net by james090500
+author: james090500
+version: 1.0.1
+main: com.james090500.Bukkit.MainBukkit

@@ -1,0 +1,14 @@
+##########################################################################
+#
+#					AdvancedAutoBan by James090500
+#
+##########################################################################
+
+# The amount of seconds the plugin should check for ALT accounts under the same IP
+# default: 600
+ban_period: 600
+
+# The message which should be received for an ALT joining under the same IP as a previously
+# banned account
+# default: "Evading punishment of an alt (%banned_player%)"
+ban_message: "Evading punishment of an alt (%banned_player%)"
