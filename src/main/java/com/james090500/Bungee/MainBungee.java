@@ -36,11 +36,6 @@ public class MainBungee extends Plugin {
         }, 0, 60, TimeUnit.MINUTES);
 	}
 	
-	@Override
-	public void onDisable() {
-		Main.onDisable(getLogger());	 
-	}
-	
 	public Configuration loadConfig() {
         if (!getDataFolder().exists()) {
             getDataFolder().mkdir();
