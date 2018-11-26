@@ -6,8 +6,8 @@ import java.util.Map.Entry;
 
 import com.james090500.Managers.BanManager;
 
-import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -29,11 +29,11 @@ public class BanListnerBungee implements Listener {
 		
 		if(sender.hasPermission("ab.ban.perma") || sender.hasPermission("ab.ban.temp")) {
 			if(command[0].equals("/ban") && command.length > 1) {
-				ProxiedPlayer bannedPlayer = BungeeCord.getInstance().getPlayer(command[1]);
+				ProxiedPlayer bannedPlayer = ProxyServer.getInstance().getPlayer(command[1]);
 				if(bannedPlayer != null) {
 					if(!bannedPlayer.hasPermission("ab.ban.exempt")) {
 						BanManager.INSTANCE.addBan(bannedPlayer.getAddress().getAddress().getHostAddress(), bannedPlayer.getName());
-						for(ProxiedPlayer onlinePlayer : BungeeCord.getInstance().getPlayers()) {
+						for(ProxiedPlayer onlinePlayer : ProxyServer.getInstance().getPlayers()) {
 							if(onlinePlayer.getAddress().getAddress().getHostAddress().equals(bannedPlayer.getAddress().getAddress().getHostAddress())) {
 								onlinePlayer.disconnect();							
 							}
