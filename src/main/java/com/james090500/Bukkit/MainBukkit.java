@@ -26,10 +26,4 @@ public class MainBukkit extends JavaPlugin {
 			BanManager.INSTANCE.cleanBanList();
 		},(20*10L),(20*3600L));
 	}
-	
-	@Override
-	public void onDisable() {
-		Main.onDisable(getLogger());
-	}
-	
 }
