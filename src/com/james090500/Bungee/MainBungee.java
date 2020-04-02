@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 import com.james090500.Main;
 import com.james090500.Bungee.Listeners.BanListnerBungee;
-import com.james090500.Bungee.Listeners.ConnectionListenerBungee;
 import com.james090500.Managers.BanManager;
 
 import net.md_5.bungee.api.plugin.Plugin;
@@ -23,15 +22,14 @@ public class MainBungee extends Plugin {
 		Main.onEnable(getLogger());		
 
 		//Register Events
-		BanManager.INSTANCE.banPeriod = loadConfig().getInt("ban_period");
-		getProxy().getPluginManager().registerListener(this, new ConnectionListenerBungee(loadConfig().getString("ban_message")));
-		getProxy().getPluginManager().registerListener(this, new BanListnerBungee());			
+		BanManager.banPeriod = loadConfig().getInt("ban_period");
+		getProxy().getPluginManager().registerListener(this, new BanListnerBungee(loadConfig().getString("ban_message")));			
 		
-	
+		//Periodically clear the ban list
 		getProxy().getScheduler().schedule(this, new Runnable() {
             @Override
             public void run() {
-            	BanManager.INSTANCE.cleanBanList();
+            	BanManager.cleanBanList();
             }
         }, 0, 60, TimeUnit.MINUTES);
 	}
@@ -41,15 +39,19 @@ public class MainBungee extends Plugin {
 		Main.onDisable(getLogger());	 
 	}
 	
+	/**
+	 * Loads the config
+	 * @return
+	 */
 	public Configuration loadConfig() {
-        if (!getDataFolder().exists()) {
+        if(!getDataFolder().exists()) {
             getDataFolder().mkdir();
         }
-
+        
         File file = new File(getDataFolder(), "config.yml");
 
-     
-        if (!file.exists()) {
+        //Check if config exists
+        if(!file.exists()) {
             try (InputStream in = getResourceAsStream("config.yml")) {
                 Files.copy(in, file.toPath());
             } catch (IOException e) {
@@ -57,6 +59,7 @@ public class MainBungee extends Plugin {
             }
         }
         
+        //Try load the config
 		try {
 			Configuration configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
 			return configuration;
