@@ -1,5 +1,14 @@
 name: AdvancedBanAutoBan
 description: Developed for CapeCraft.Net by james090500
 author: james090500
-version: 1.0.2
-main: com.james090500.Bukkit.MainBukkit
+version: 1.0.3
+main: com.james090500.AdvancedAutoBan.Bukkit.MainBukkit
+api-version: "1.16"
+commands:
+  autoban:
+    description: Advanced Auto Ban
+permissions:
+  autoban.admin:
+    description: Allows for usage of admin commands
+  autoban.bypass:
+    description: Allows bypassing of bans

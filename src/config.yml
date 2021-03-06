@@ -1,8 +1,15 @@
 ##########################################################################
-#
-#					AdvancedAutoBan by James090500
-#
+#                                                                        #
+#					AdvancedAutoBan by James090500                       #
+#                                                                        #
 ##########################################################################
+
+# The user which bans the players
+# MAX 16 CHARACTERS!
+ban_user: "Auto Ban"
+
+# The duration a player should be banned for (-1 = Permanent)
+ban_duration: -1
 
 # The amount of seconds the plugin should check for ALT accounts under the same IP
 # default: 600

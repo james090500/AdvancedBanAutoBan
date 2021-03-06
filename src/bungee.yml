@@ -1,5 +1,5 @@
 name: AdvancedBanAutoBan
 description: Developed for CapeCraft.Net by james090500
 author: james090500
-version: 1.0.2
-main: com.james090500.Bungee.MainBungee
+version: 1.0.3
+main: com.james090500.AdvancedAutoBan.Bungee.MainBungee
